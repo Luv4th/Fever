@@ -40,5 +40,5 @@ You can now run Fever using the following command:
 
 - # License
 
-- This project is licensed under the MIT License. See the LICENSE file for more details.
+- This project is unlicensed.
 
