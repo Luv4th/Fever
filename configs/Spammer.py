@@ -17,4 +17,4 @@ while True:
         print(designe(current_time, username) + "Invalid input! Please enter a valid integer.")
 send_webhook_message(WEBHOOK_URL, MESSAGE)
 spam_webhook(WEBHOOK_URL, MESSAGE, SPAM_COUNT, DELAY)
-input("Press Enter to exit...")
+input(Fore.GREEN + Fore.RED + "[" + current_time + "]" + Fore.LIGHTBLUE_EX + " [@" + "System" + "]" + Fore.WHITE + " | " + Fore.GREEN +   "Press Enter to exit...")

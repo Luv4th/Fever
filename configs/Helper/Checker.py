@@ -1,4 +1,6 @@
 import requests
+import socket
+import threading
 import time
 from colorama import Fore
 from datetime import datetime
@@ -53,3 +55,30 @@ def get_location(ip_address):
         return location_info
     else:
         return {"Error": "Failed to fetch location data"}
+
+
+def scan_ports_range(ip, start_port, end_port):
+    port: int
+    for port in range(start_port, end_port + 1):
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(1)
+        result = sock.connect_ex((ip, port))
+        if result == 0:
+            print(
+                Fore.GREEN + f"[{Fore.RED}{current_time}{Fore.GREEN}] {Fore.LIGHTBLUE_EX}[@System]{Fore.WHITE} | {Fore.GREEN}{Fore.BLUE}port {port} is open")
+        sock.close()
+
+
+def scan_ports_multithreaded(ip, start_port, end_port, num_threads):
+    threads = []
+    range_size = (end_port - start_port) // num_threads
+
+    for i in range(num_threads):
+        thread_start = start_port + i * range_size
+        thread_end = start_port + (i + 1) * range_size - 1 if i != num_threads - 1 else end_port
+        thread = threading.Thread(target=scan_ports_range, args=(ip, thread_start, thread_end))
+        threads.append(thread)
+        thread.start()
+
+    for thread in threads:
+        thread.join()
