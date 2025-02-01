@@ -41,4 +41,6 @@ You can now run Fever using the following command:
 - # License
 
 - This project is unlicensed.
-
+  
+- # Discord
+https://discord.gg/BHypnwAWuS
