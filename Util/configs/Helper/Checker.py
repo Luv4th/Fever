@@ -1,4 +1,5 @@
 import requests
+import os
 import socket
 import threading
 import time
@@ -9,6 +10,9 @@ WEBHOOK_URL = "Your Webhook"
 MESSAGE = "Your Message"
 DELAY = 0
 SPAM_COUNT = 1
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def send_webhook_message(webhook_url, message):
     payload = {
         "content": message
@@ -51,12 +55,9 @@ def get_location(ip_address):
             "Postal Code": data.get("postal", "N/A"),
             "Timezone": data.get("timezone", "N/A"),
         }
-
         return location_info
     else:
         return {"Error": "Failed to fetch location data"}
-
-
 def scan_ports_range(ip, start_port, end_port):
     port: int
     for port in range(start_port, end_port + 1):
@@ -67,8 +68,6 @@ def scan_ports_range(ip, start_port, end_port):
             print(
                 Fore.GREEN + f"[{Fore.RED}{current_time}{Fore.GREEN}] {Fore.LIGHTBLUE_EX}[@System]{Fore.WHITE} | {Fore.GREEN}{Fore.BLUE}port {port} is open")
         sock.close()
-
-
 def scan_ports_multithreaded(ip, start_port, end_port, num_threads):
     threads = []
     range_size = (end_port - start_port) // num_threads
@@ -79,6 +78,5 @@ def scan_ports_multithreaded(ip, start_port, end_port, num_threads):
         thread = threading.Thread(target=scan_ports_range, args=(ip, thread_start, thread_end))
         threads.append(thread)
         thread.start()
-
     for thread in threads:
         thread.join()

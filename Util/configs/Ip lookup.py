@@ -1,6 +1,6 @@
 import os
 from Helper.Checker import get_location
-from Helper.Designe import designe
+from Helper.Design import designe
 from colorama import Fore
 from datetime import datetime
 username = os.getlogin()

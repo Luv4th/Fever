@@ -2,7 +2,7 @@ import os
 from colorama import Fore
 from datetime import datetime
 from Helper.Checker import spam_webhook, send_webhook_message, check_webhook
-from Helper.Designe import designe
+from Helper.Design import designe
 username = os.getlogin()
 current_time = datetime.now().strftime("%H:%M:%S")
 WEBHOOK_URL = input(designe(current_time, username)+ Fore.LIGHTWHITE_EX +  "Input Webhook : ")
@@ -11,7 +11,7 @@ MESSAGE = input(designe(current_time, username) + Fore.LIGHTWHITE_EX +  "Input M
 DELAY = float(input(Fore.RED + "[" + current_time + "]" + Fore.MAGENTA + " [@" + username + "]" + Fore.WHITE + " | " + Fore.LIGHTWHITE_EX + Fore.GREEN + "Input Delay : "))
 while True:
     try:
-        SPAM_COUNT = int(input(Fore.RED + "[" + current_time + "]" + Fore.MAGENTA + " [@" + username + "]" + Fore.WHITE + " | " + Fore.LIGHTWHITE_EX +  "Input How Many Times The Webhook Gets Spammed : "))
+        SPAM_COUNT = int(input(Fore.RED + "[" + current_time + "]" + Fore.MAGENTA + " [@" + username + "]" + Fore.WHITE + " | " + Fore.LIGHTWHITE_EX +  "Input How Many Times The Message Gets Sent : "))
         break
     except ValueError:
         print(designe(current_time, username) + "Invalid input! Please enter a valid integer.")
